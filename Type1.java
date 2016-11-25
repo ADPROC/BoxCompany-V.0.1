@@ -1,76 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package box;
+
 /**
  *
- * @author Pawel
+ * @author britt
  */
-public class Type1 {
+public class Type1 extends Box {
     
-    private int width;      // cm 
-    private int length;
-    private int height;
-    private int grade;
+    private int color = 0;
     
-    private int boxArea;
-    private double cost;
     
-    public Type1(int width, int length, int height, int grade) {
-        this.width = width;
-        this.length = length;
-        this.height = height;
-        this.grade = grade;
+    public Type1(int width, int length, int height, int grade, int qty) {
+        super(width, length, height, grade, qty);
     }
-    
-    // access methods
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getLength() {
-        return length;
-    }
-    
-    public int getHeight() {
-        return height;
-    }
-    
-    public int getGrade() {
-        return grade;
-    }
-    
-    // update methods
-    public void setWidth(int widthIn) {
-        this.width = widthIn;
-    }
-    
-    public void setLength(int lengthIn) {
-        this.length = lengthIn;
-    }
-    
-    public void setHeight(int heightIn) {
-        this.height = heightIn;
-    }
-    
-    public void setGrade(int gradeIn) {
-        this.grade = gradeIn;
-    }
-    
-    public void totalBoxArea() {
-        boxArea = (2 * length * width) + (2 * length * height) + (2 * width * height);
-        System.out.println("Box area: " + boxArea);
-        System.out.println("Type 1");
-    }
-    
+   
+     
+    @Override
     public void cost() {
-        if(grade == 1) {
-            cost = boxArea * 0.50;                          // 76 * 0.5 = 38
+        System.out.println("enter cost of type 1");
+        if(boxArea()>30){
+            if(grade == 1) {
+            cost = (boxArea() * 0.50 * qty);                          // 76 * 0.5 = 38
             System.out.println("Box cost: " + cost);
         }
-        else if(grade == 2) {
-            cost = boxArea * 0.60;
-            System.out.println("Box cost: " + cost);
+            else if(grade==2){
+                cost=(boxArea() *0.60 * qty);
+                System.out.println("Box Cost:"  + cost);
+            }
+            else if(grade==3){
+                cost=(boxArea() *0.72 * qty);
+                System.out.println("Box Cost:"  + cost);
+                
+            }
+           // return cost;  
+           if(color== 0){
+               System.out.println("Box has no color");
+           }
+           System.out.println("Total Cost:" + cost);  
+           // catch needed for if any number entered it would not be able to have colour message to display
         }
-        else if(grade == 3) {
-            cost = boxArea * 0.72;
-            System.out.println("Box cost: " + cost);
-        }
+     
     }
+    
 }

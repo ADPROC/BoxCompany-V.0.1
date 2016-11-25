@@ -3,95 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package box;
 
 /**
  *
- * @author Pawel
+ * @author britt
  */
-public class Type3 {
-    
-    private int width;      // cm 
-    private int length;
-    private int height;
-    private int grade;
-    
-    private int color;
-    
-    private int boxArea;
-    private double cost;
-    
-    public Type3(int width, int length, int height, int grade, int color) {
-        this.width = width;
-        this.length = length;
-        this.height = height;
-        this.grade = grade;
-        this.color = color;
+public class Type3 extends Box {
+
+    protected double finalCost;
+    //private int color = 2;
+
+    public Type3(int width, int length, int height, int grade, int qty, String reinBottom) {//, String reinBottom, String reinCorners){//,int color, String sealTop, String reinBottom, String reinCorners) {
+        super(width, length, height, grade, qty, reinBottom);//,reinBottom,reinCorners),color,sealTop ,reinBottom, reinCorners);
     }
-    
-    // access methods
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getLength() {
-        return length;
-    }
-    
-    public int getHeight() {
-        return height;
-    }
-    
-    public int getGrade() {
-        return grade;
-    }
-    
-    public int getColor() {
-        return color;
-    }
-    
-    // update methods
-    public void setWidth(int widthIn) {
-        this.width = widthIn;
-    }
-    
-    public void setLength(int lengthIn) {
-        this.length = lengthIn;
-    }
-    
-    public void setHeight(int heightIn) {
-        this.height = heightIn;
-    }
-    
-    public void setGrade(int gradeIn) {
-        this.grade = gradeIn;
-    }
-    
-    public void setColor(int colorIn) {
-        this.color = colorIn;
-    }
-    
-    public void totalBoxArea() {
-        boxArea = (2 * length * width) + (2 * length * height) + (2 * width * height);
-        System.out.println("Box area: " + boxArea);
-         System.out.println("Type 3");
-    }
-    
+
+//    public void additionals() {
+//        System.out.println("color: 22");
+//    }
+
+    /**
+     *
+     */
+    @Override
     public void cost() {
-        if(grade == 2) {
-            cost = boxArea * 0.60 + ((boxArea * 0.60) * 0.16);      // 76 * 0.6 + (( 76 * 0.6) * 0.16) = 45.6 + 7.296 = 52.896 (to correct, two places after comma
-            System.out.println("Box cost: " + cost);
+        if (boxArea() < 80) {
+            System.out.println("cost type 3");
+            //if (reinBottom == "no") {
+                if (grade == 2) {
+                    cost = (boxArea() * 0.60 * qty);
+                    System.out.println("Box Cost:" + qty + "x 0.60=" + cost);
+                } else if (grade == 3) {
+                    cost = (boxArea() * 0.72 * qty);
+                    System.out.println("Box Cost:" + qty + "x 0.72=" + cost);
+
+                } else if (grade == 4) {
+                    cost = (boxArea() * 0.90 * qty);
+                    System.out.println("Box Cost:" + qty + "x 0.90=" + cost);
+                } else if (grade == 5) {
+                    cost = boxArea() * 1.4 * qty;
+                    System.out.println("Box Cost:" + qty + "x 1.4=" + cost);
+                }
+            //}
+
+            // return cost;  
+//            if (color == 2) {
+//                finalCost = ((16 / 100) * cost) + cost;
+//                System.out.println("Box 3 exsit");
+//
+//                additionals();
+//            }
+            System.out.println("Total Cost:" + finalCost);
+            // catch needed for if any number entered it would not be able to have colour message to display
+        } else {
+            System.out.println("no such box of type 3 exist.");
         }
-        else if(grade == 3) {
-            cost = boxArea * 0.72 + ((boxArea * 0.72) * 0.16);
-            System.out.println("Box cost: " + cost);
-        }
-        else if(grade == 4) {
-            cost = boxArea * 0.90 + ((boxArea * 0.90) * 0.16);
-            System.out.println("Box cost: " + cost);
-        }
-        else if(grade == 5) {
-            cost = boxArea * 1.4 + ((boxArea * 1.4) * 0.16);
-            System.out.println("Box cost: " + cost);
-        }
+
     }
 }
